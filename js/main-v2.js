@@ -1,3 +1,6 @@
+// closure to prevent leaking to global scope
+(function (window, document, $) {
+
 var quiz = quiz || {};
 
 (function () {
@@ -154,7 +157,11 @@ quiz.showResults = function () {
         $(".results").fadeIn();
     });
 }
-    
-}()); 
 
-quiz.start();
+}());
+
+$(function () {
+    quiz.start();
+});
+
+}(this, this.document, this.jQuery));
