@@ -86,7 +86,7 @@
 
             var questionsLength = questionObj.choices.length,
                 $questions = $('.quiz-questions'),
-                questionStr;
+                questionStr = '';
 
             // Clear out previous questions
             $questions.html('');
@@ -96,15 +96,15 @@
 
             // Build list of choices from current question
             for (var i = 0; i < questionsLength; i++) {
-                questionStr = '<input type="radio" name="answer" value="' + questionObj.choices[i] + '"/>';
-                questionStr += '<label>' + questionObj.choices[i] + '</label>';
-
-                $questions.append(questionStr);
+                questionStr += '<div><input type="radio" name="answer" value="' + questionObj.choices[i] + '"/>';
+                questionStr += '<label>' + questionObj.choices[i] + '</label></div>\n';
             }
+
+            $questions.append(questionStr);
         }
 
         quiz.checkForCheck = function () {
-            var choices = $('.quiz-questions').children('input[type="radio"]'),
+            var choices = $('.quiz-questions').find('input:radio'),
                 currentQuestion = questionData[current],
                 correctAnswer = currentQuestion.choices[current];
 
