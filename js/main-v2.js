@@ -1,11 +1,11 @@
 var quiz = quiz || {};
 
-(function() { 
+(function () {
 
 var current = 0,
-      answersArr = [],
-      correctAnswersArr = [],
-      questionData = [
+    answersArr = [],
+    correctAnswersArr = [],
+    questionData = [
         {
             question: "Who is Prime Minister of the United Kingdom?",
             choices: ["David Cameron", "Gordon Brown", "Winston Churchill", "Tony Blair"],
@@ -24,8 +24,7 @@ var current = 0,
     ];
 
 quiz.controls = {
-        next : function() {
-
+    next : function () {
         var quizLength = questionData.length;
 
         if (quiz.checkForCheck()) {
@@ -36,7 +35,7 @@ quiz.controls = {
 
             // Only go to the next question if there are more questions
             if (current < quizLength) {
-                quiz.build(); 
+                quiz.build();
 
                 // Add previously selected choice value if there is one
                 if (answersArr[current]) {
@@ -53,7 +52,7 @@ quiz.controls = {
 
         return false;
     },
-    previous : function() {
+    prev : function () {
         current--;
         quiz.build();
 
@@ -66,11 +65,11 @@ quiz.controls = {
         var prev = $('.prev-question');
         return current > 0 ? prev.fadeIn() : prev.hide();
     }
-}
+};
 
-quiz.start = function() {
+quiz.start = function () {
     var total = questionData.length;
-    
+
     $(".total").html(total);
 
     quiz.build();
@@ -79,17 +78,17 @@ quiz.start = function() {
     $(".next-question").bind("click", quiz.controls.next);
 };
 
-quiz.build = function() {
+quiz.build = function () {
     var questionObj = questionData[current];
 
     var questionsLength = questionObj.choices.length,
-         $questions = $(".quiz-questions"),
-         questionStr;
+        $questions = $(".quiz-questions"),
+        questionStr;
 
-     // Clear out previous questions
-     $questions.html("");
+    // Clear out previous questions
+    $questions.html("");
 
-     // Add Question Header Text
+    // Add Question Header Text
     $(".questionHead").html(questionObj.question);
 
     // Build list of choices from current question
@@ -101,16 +100,16 @@ quiz.build = function() {
     }
 }
 
-quiz.checkForCheck = function() {
-    var  choices = $(".quiz-questions").children("input[type='radio']"),
-          currentQuestion = questionData[current],
-          correctAnswer = currentQuestion.choices[current];
-    
+quiz.checkForCheck = function () {
+    var choices = $(".quiz-questions").children("input[type='radio']"),
+        currentQuestion = questionData[current],
+        correctAnswer = currentQuestion.choices[current];
+
     // Make sure a choice has been selected
     if ($(choices).is(":checked")) {
         var $checked = $("input:radio:checked"),
-              currentAnswer = answersArr[current],
-              value = $checked.val();
+            currentAnswer = answersArr[current],
+            value = $checked.val();
 
         // Keep track of answers
         if (!currentAnswer) {
@@ -121,38 +120,38 @@ quiz.checkForCheck = function() {
         }
 
         // Update correct Answer value as long as it is not already there
-        if (value === correctAnswer && currentAnswer != value) {
+        if (value === correctAnswer && currentAnswer !== value) {
             correctAnswersArr.push(value);
         } else {
             // User went back and changed value and now its wrong
-            if (value != correctAnswersArr[current]) {
+            if (value !== correctAnswersArr[current]) {
                 var currentCorrectAnswer = correctAnswersArr[current],
-                      index = correctAnswersArr.indexOf(currentCorrectAnswer);
+                index = correctAnswersArr.indexOf(currentCorrectAnswer);
 
-               // Remove previously selected correct answer
+                // Remove previously selected correct answer
                 correctAnswersArr.splice(index, 1);
             }
         }
 
-        return true
+        return true;
     }
 };
 
-quiz.rememberAnswer = function() {
+quiz.rememberAnswer = function () {
     var checkedValue = answersArr[current],
-         $checked = $("input:radio[value='" + checkedValue +"']");
+        $checked = $("input:radio[value='" + checkedValue +"']");
 
-    $checked.attr("checked", "checked");    
+    $checked.attr("checked", "checked");
 };
 
 quiz.showResults = function () {
     var correctAnswers = correctAnswersArr.length;
 
-    // Add amount of correct answers 
+    // Add amount of correct answers
     $(".correct").html(correctAnswers);
 
-    $(".quiz-wrap").fadeOut(function() {
-        $(".results").fadeIn();  
+    $(".quiz-wrap").fadeOut(function () {
+        $(".results").fadeIn();
     });
 }
     
