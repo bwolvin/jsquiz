@@ -77,8 +77,8 @@
 
             quiz.build();
 
-            $('.prev-question').bind('click', quiz.controls.prev);
-            $('.next-question').bind('click', quiz.controls.next);
+            $('.prev-question').on('click', quiz.controls.prev);
+            $('.next-question').on('click', quiz.controls.next);
         };
 
         quiz.build = function () {
