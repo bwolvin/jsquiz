@@ -106,7 +106,7 @@
         quiz.checkForCheck = function () {
             var choices = $('.quiz-questions').find('input:radio'),
                 currentQuestion = questionData[current],
-                correctAnswer = currentQuestion.choices[current];
+                correctAnswer = currentQuestion.choices[currentQuestion.correctAnswer];
 
             // Make sure a choice has been selected
             if (choices.is(':checked')) {
