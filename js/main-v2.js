@@ -10,18 +10,18 @@
             correctAnswersArr = [],
             questionData = [
                 {
-                    question: "Who is Prime Minister of the United Kingdom?",
-                    choices: ["David Cameron", "Gordon Brown", "Winston Churchill", "Tony Blair"],
+                    question: 'Who is Prime Minister of the United Kingdom?',
+                    choices: ['David Cameron', 'Gordon Brown', 'Winston Churchill', 'Tony Blair'],
                     correctAnswer: 0
                 },
                 {
-                    question: "How much wood could a wood chuck?",
-                    choices: ["some", "not much", "a lot", "none"],
+                    question: 'How much wood could a wood chuck?',
+                    choices: ['some', 'not much', 'a lot', 'none'],
                     correctAnswer: 2
                 },
                 {
-                    question: "Which is the largest prime number?",
-                    choices: ["5", "39", "44", "93"],
+                    question: 'Which is the largest prime number?',
+                    choices: ['5', '39', '44', '93'],
                     correctAnswer: 0
                 }
             ];
@@ -50,7 +50,7 @@
                     }
 
                 } else {
-                    alert("Please select an answer");
+                    alert('Please select an answer');
                 }
 
                 return false;
@@ -73,44 +73,44 @@
         quiz.start = function () {
             var total = questionData.length;
 
-            $(".total").html(total);
+            $('.total').html(total);
 
             quiz.build();
 
-            $(".prev-question").bind("click", quiz.controls.prev);
-            $(".next-question").bind("click", quiz.controls.next);
+            $('.prev-question').bind('click', quiz.controls.prev);
+            $('.next-question').bind('click', quiz.controls.next);
         };
 
         quiz.build = function () {
             var questionObj = questionData[current];
 
             var questionsLength = questionObj.choices.length,
-                $questions = $(".quiz-questions"),
+                $questions = $('.quiz-questions'),
                 questionStr;
 
             // Clear out previous questions
-            $questions.html("");
+            $questions.html('');
 
             // Add Question Header Text
-            $(".questionHead").html(questionObj.question);
+            $('.questionHead').html(questionObj.question);
 
             // Build list of choices from current question
             for (var i = 0; i < questionsLength; i++) {
-                questionStr = "<input type='radio' name='answer' value='" + questionObj.choices[i] + "'/>";
-                questionStr += "<label>" + questionObj.choices[i] + "</label>";
+                questionStr = '<input type="radio" name="answer" value="' + questionObj.choices[i] + '"/>';
+                questionStr += '<label>' + questionObj.choices[i] + '</label>';
 
                 $questions.append(questionStr);
             }
         }
 
         quiz.checkForCheck = function () {
-            var choices = $(".quiz-questions").children("input[type='radio']"),
+            var choices = $('.quiz-questions').children('input[type="radio"]'),
                 currentQuestion = questionData[current],
                 correctAnswer = currentQuestion.choices[current];
 
             // Make sure a choice has been selected
-            if ($(choices).is(":checked")) {
-                var $checked = $("input:radio:checked"),
+            if ($(choices).is(':checked')) {
+                var $checked = $('input:radio:checked'),
                     currentAnswer = answersArr[current],
                     value = $checked.val();
 
@@ -142,19 +142,19 @@
 
         quiz.rememberAnswer = function () {
             var checkedValue = answersArr[current],
-                $checked = $("input:radio[value='" + checkedValue +"']");
+                $checked = $('input:radio[value="' + checkedValue +'"]');
 
-            $checked.attr("checked", "checked");
+            $checked.attr('checked', 'checked');
         };
 
         quiz.showResults = function () {
             var correctAnswers = correctAnswersArr.length;
 
             // Add amount of correct answers
-            $(".correct").html(correctAnswers);
+            $('.correct').html(correctAnswers);
 
-            $(".quiz-wrap").fadeOut(function () {
-                $(".results").fadeIn();
+            $('.quiz-wrap').fadeOut(function () {
+                $('.results').fadeIn();
             });
         }
 
