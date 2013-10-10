@@ -109,7 +109,7 @@
                 correctAnswer = currentQuestion.choices[current];
 
             // Make sure a choice has been selected
-            if ($(choices).is(':checked')) {
+            if (choices.is(':checked')) {
                 var $checked = $('input:radio:checked'),
                     currentAnswer = answersArr[current],
                     value = $checked.val();
