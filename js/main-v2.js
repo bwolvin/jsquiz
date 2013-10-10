@@ -7,19 +7,19 @@ var current = 0,
       correctAnswersArr = [],
       questionData = [
         {
-            question: "Who is Prime Minister of the United Kingdom?", 
-            choices: ["David Cameron", "Gordon Brown", "Winston Churchill", "Tony Blair"], 
-            correctAnswer:0
+            question: "Who is Prime Minister of the United Kingdom?",
+            choices: ["David Cameron", "Gordon Brown", "Winston Churchill", "Tony Blair"],
+            correctAnswer: 0
         },
         {
-            question: "How much wood could a wood chuck", 
-            choices: ["some", "not much", "alot", "none"], 
-            correctAnswer:2
+            question: "How much wood could a wood chuck?",
+            choices: ["some", "not much", "a lot", "none"],
+            correctAnswer: 2
         },
         {
-            question: "Who is Prime Minister of the United Kingdom?", 
-            choices: ["1", "2", "3", "4"], 
-            correctAnswer:3
+            question: "Which is the largest prime number?",
+            choices: ["5", "39", "44", "93"],
+            correctAnswer: 0
         }
     ];
 
