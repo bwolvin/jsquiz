@@ -32,9 +32,7 @@ quiz.controls = {
             current++;
 
             // Only show previous button if we are not on 1st question
-            if (current != 0) {
-                $(".prev-question").fadeIn();
-            }
+            quiz.controls.togglePrevBtn();
 
             // Only go to the next question if there are more questions
             if (current < quizLength) {
@@ -61,9 +59,12 @@ quiz.controls = {
 
         quiz.rememberAnswer();
 
-        if (current < 1) {
-            $(".prev-question").hide();
-        }
+        // Hide previous button if we are on 1st question
+        quiz.controls.togglePrevBtn();
+    },
+    togglePrevBtn : function () {
+        var prev = $('.prev-question');
+        return current > 0 ? prev.fadeIn() : prev.hide();
     }
 }
 
